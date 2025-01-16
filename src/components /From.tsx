@@ -20,7 +20,41 @@ const Form: React.FC<formProps> = ({formType, onSubmit}) => {
         onSubmit(formData);
     };
 
-    return()
+    return(
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-2xl font-bold text-center mb-6 capitalize">{formType}</h2>
+            <Input 
+                id="email"
+                type="email"
+                label="Email"
+                placeholder="Enter Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+                id="password"
+                type="password"
+                label="Password"
+                placeholder="Enter your Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            {(formType == 'signup' || formType == 'reset') && 
+            
+            <Input 
+                id="confirmPassword"
+                type="confirmPassord"
+                label="Confirm Password"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => e.target.value}
+            />
+            }
+
+
+
+        </form>
+    )
 }
 
 export default Form;
