@@ -1,0 +1,15 @@
+# Ignore the node_modules folder
+node_modules/
+
+# Ignore the Next.js build output
+.next/
+
+# Ignore static export output
+out/
+
+# Ignore logs and environment files
+*.log
+.env
+
+# Ignore public assets (e.g., images, fonts)
+public/

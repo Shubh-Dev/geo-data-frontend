@@ -1,7 +1,12 @@
+import Form from '@/components/Form';
+
 export default function Home() {
+  const handleSubmit = () => {
+    console.log('Submitting');
+  };
   return (
-    <div>
-     <p className="text-red-700">Hello World</p>
+    <div className="w-full">
+      <Form formType="login" onSubmit={handleSubmit} />
     </div>
   );
 }
