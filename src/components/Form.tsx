@@ -105,7 +105,7 @@ const Form: React.FC<formProps> = ({ formType, onSubmit }) => {
             <Link href="/auth/signup">
               <button
                 type="button"
-                className={`bg-[#e5e7eb] text-gray-600 py-2 mt-4 rounded-sm hover:bg-[#365aa3] transition duration-200 w-full`}
+                className={`bg-[#e5e7eb] text-gray-600 py-2 mt-4 rounded-sm hover:text-gray-400 transition duration-200 w-full`}
               >
                 Sign Up
               </button>
