@@ -1,8 +1,10 @@
-// Form.tsx
+// src/components/Form.tsx
 // A reusable form component that supports dynamic configuration and event handling.
 
 import React, { useState } from 'react';
 import Input from './Input';
+import PrimaryButton from './PrimaryButton';
+import Link from 'next/link';
 
 interface formProps {
   formType: 'login' | 'signup' | 'reset'; // type of forms
@@ -35,17 +37,23 @@ const Form: React.FC<formProps> = ({ formType, onSubmit }) => {
 
     onSubmit(formData); // pass the form data to the submit handler
   };
-
+  const buttonText =
+    formType === 'login'
+      ? 'Log In'
+      : formType === 'signup'
+        ? 'Sign Up'
+        : 'Reset Password';
   return (
-    <div>
+    <div className="w-full p-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-lg shadow-lg border border-red-600"
+        className="bg-white  px-6 py-12 rounded-lg shadow-lg sm:w-full md:w-5/6 lg:w-2/6 xl:1/6 mx-auto  mt-24"
       >
-        <h2 className="text-2xl font-bold text-center mb-6 capitalize">
+        <h2 className="text-2xl text-[#4672F4] font-bold text-center mb-6 capitalize">
           {formType}
         </h2>
-        <div>
+
+        <div className="text-center">
           <Input
             id="email"
             type="email"
@@ -54,8 +62,7 @@ const Form: React.FC<formProps> = ({ formType, onSubmit }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div>
+
           <Input
             id="password"
             type="password"
@@ -64,8 +71,7 @@ const Form: React.FC<formProps> = ({ formType, onSubmit }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <div>
+
           {(formType == 'signup' || formType == 'reset') && (
             <Input
               id="confirmPassword"
@@ -77,6 +83,43 @@ const Form: React.FC<formProps> = ({ formType, onSubmit }) => {
             />
           )}
         </div>
+        <div className="mt-12">
+          <PrimaryButton children={buttonText} onClick={handleSubmit} />
+        </div>
+        {formType == 'signup' && (
+          <Link href="/auth/login">
+            <p className="text-center text-sm mt-6 text-[#4672F4]">
+              Already have an account?
+            </p>
+          </Link>
+        )}
+
+        {formType == 'login' && (
+          <div>
+            <Link href="/auth/reset">
+              <p className="text-center text-sm mt-6 text-[#4672F4]">
+                Forgot Your password?
+              </p>
+            </Link>
+            <hr className="border-t-1 border-gray-200 my-4" />
+            <Link href="/auth/signup">
+              <button
+                type="button"
+                className={`bg-[#e5e7eb] text-gray-600 py-2 mt-4 rounded-sm hover:bg-[#365aa3] transition duration-200 w-full`}
+              >
+                Sign Up
+              </button>
+            </Link>
+          </div>
+        )}
+
+        {formType == 'reset' && (
+          <Link href="/auth/login">
+            <p className="text-center text-sm mt-6 text-[#4672F4]">
+              Go back to Login
+            </p>
+          </Link>
+        )}
       </form>
     </div>
   );

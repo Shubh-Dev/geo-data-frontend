@@ -1,4 +1,4 @@
-// Input.tsx
+// /src/components/Input.tsx
 // A reusable input component that supports dynamic configuration.
 import React from 'react';
 
@@ -30,7 +30,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="mt-2 px-3 py-2 border rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
+        className="mt-3 px-3 py-2 border rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-400 w-full"
       />
     </div>
   );
